@@ -1,7 +1,7 @@
 {
-  "name": "webpack-starter",
+  "name": "game-engine",
   "version": "1.0.0",
-  "description": "A light foundation for your next frontend project based on webpack.",
+  "description": "A mix of Matter.js and Pixi.js for an optimal gaming experience.",
   "scripts": {
     "lint": "npm run lint:styles; npm run lint:scripts",
     "lint:styles": "stylelint src",
@@ -57,6 +57,9 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "core-js": "^3.8.1"
+    "core-js": "^3.8.1",
+    "keycode": "^2.2.0",
+    "matter-js": "^0.14.2",
+    "pixi.js": "^5.3.6"
   }
 }
