@@ -12,7 +12,7 @@ export default class Behavior {
 
     this.gameObject = gameObject;
     this.key = key;
-    Object.extend(this, values);
+    Object.assign(this, values);
   }
 
   initialize() {
@@ -24,6 +24,14 @@ export default class Behavior {
   }
 
   update() {
+
+  }
+
+  resolve() {
+
+  }
+
+  draw() {
 
   }
 

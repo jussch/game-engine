@@ -7,13 +7,31 @@ import Behavior from '../classes/Behavior';
 export default class RigidBodyBehavior extends Behavior {
   type = 'rectangle';
   size = { x: 100, y: 100 };
+  isStatic = false;
+  isSensor = false;
+  rotationLocked = false;
 
-  initialize() {
+  initialize(engine) {
     this.rigidBody = Matter.Bodies.rectangle(
       this.gameObject.position.x,
       this.gameObject.position.y,
       this.size.x,
       this.size.y,
+      {
+        isStatic: this.isStatic,
+        isSensor: this.isSensor,
+      }
     );
+
+    if (this.rotationLocked) {
+      Matter.Body.setInertia(this.rigidBody, Infinity);
+    }
+
+    Matter.World.add(engine.physics.world, [this.rigidBody]);
+  }
+
+  resolve() {
+    this.gameObject.position.x = this.rigidBody.position.x;
+    this.gameObject.position.y = this.rigidBody.position.y;
   }
 }

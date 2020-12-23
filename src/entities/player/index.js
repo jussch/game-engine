@@ -4,6 +4,7 @@
 import GameObject from '../../classes/GameObject';
 import SpriteBehavior from '../../behaviors/SpriteBehavior';
 import RigidBodyBehavior from '../../behaviors/RigidBodyBehavior';
+import PlayerBehavior from './PlayerBehavior';
 
 export default GameObject.schema({
   name: 'Player',
@@ -12,6 +13,9 @@ export default GameObject.schema({
 
     }),
     RigidBodyBehavior.instance({
+
+    }),
+    PlayerBehavior.instance({
 
     }),
   ],

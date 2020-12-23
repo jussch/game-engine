@@ -3,7 +3,7 @@
  */
 import Behavior from '../classes/Behavior';
 import survivor from '../survivor-idle_knife_0.png';
-import PIXI from 'pixi.js';
+import * as PIXI from 'pixi.js';
 
 export default class SpriteBehavior extends Behavior {
   image = survivor;
@@ -18,5 +18,9 @@ export default class SpriteBehavior extends Behavior {
     this.sprite.x = this.position.x;
     this.sprite.y = this.position.y;
     this.gameObject.container.addChild(this.sprite);
+  }
+
+  draw() {
+
   }
 }

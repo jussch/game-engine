@@ -8,6 +8,7 @@ export default class GameObject {
   constructor(props = {}) {
     const {
       name = 'Object',
+      id = GameObject.genId(`${name}_`),
       position = { x: 0, y: 0 },
       scale = { x: 1, y: 1 },
       children = new Collection(),
@@ -15,17 +16,17 @@ export default class GameObject {
       behaviors = [],
     } = props;
 
+    this.id = id;
     this.name = name;
     this.position = position;
     this.scale = scale;
     this.children = children;
     this.container = container;
-    this.behaviors = this.createBehaviors(behaviors);
-    this.initialize();
+    this.createBehaviors(behaviors);
   }
 
   /**
-   * Core
+   * Management
    */
   createBehaviors(behaviors) {
     this.behaviors = Collection.fromArray(behaviors.map(creator => creator({
@@ -33,24 +34,42 @@ export default class GameObject {
     })), 'key');
   }
 
-  initialize() {
-    for (let i = 0; i < 0; i += 1) {
+  hasBehavior(key) {
+    return this.behaviors.hasModel(key);
+  }
+
+  getBehavior(key) {
+    return this.behaviors.getModel(key);
+  }
+
+  /**
+   * Core
+   */
+  initialize(engine) {
+    for (let i = 0; i < this.behaviors.length; i += 1) {
       const behavior = this.behaviors.getIndex(i);
-      behavior.initialize();
+      behavior.initialize(engine);
     }
   }
 
   start() {
-    for (let i = 0; i < 0; i += 1) {
+    for (let i = 0; i < this.behaviors.length; i += 1) {
       const behavior = this.behaviors.getIndex(i);
       behavior.start();
     }
   }
 
-  update() {
-    for (let i = 0; i < 0; i += 1) {
+  update(delta) {
+    for (let i = 0; i < this.behaviors.length; i += 1) {
       const behavior = this.behaviors.getIndex(i);
-      behavior.update();
+      behavior.update(delta);
+    }
+  }
+
+  resolve() {
+    for (let i = 0; i < this.behaviors.length; i += 1) {
+      const behavior = this.behaviors.getIndex(i);
+      behavior.resolve();
     }
   }
 
@@ -79,6 +98,8 @@ export default class GameObject {
         ...options,
         ...props,
       });
+
+      return gameObject;
     };
   }
 }

@@ -3,7 +3,7 @@
  */
 
 export default class Collection {
-  constructor(props) {
+  constructor(props = {}) {
     const {
       models = {},
       ids = [],
@@ -14,6 +14,22 @@ export default class Collection {
     this.ids = ids;
     this.idProp = idProp;
     this.length = ids.length;
+  }
+
+  addModel(model) {
+    const id = model[this.idProp];
+    this.models[id] = model;
+    this.ids.push(id);
+    this.length = this.ids.length;
+    return this;
+  }
+
+  hasModel(id) {
+    return Boolean(this.models[id]);
+  }
+
+  getModel(id) {
+    return this.models[id];
   }
 
   getIndex(index) {
