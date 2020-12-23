@@ -59,6 +59,7 @@
     "@babel/polyfill": "^7.12.1",
     "core-js": "^3.8.1",
     "keycode": "^2.2.0",
+    "lodash": "^4.17.20",
     "matter-js": "^0.14.2",
     "pixi.js": "^5.3.6"
   }
