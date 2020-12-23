@@ -12,15 +12,17 @@ export default class RigidBodyBehavior extends Behavior {
   rotationLocked = false;
 
   initialize(engine) {
+    const scale = this.gameObject.scale;
+    const sizeScale = { x: this.size.x * scale.x, y: this.size.y * scale.y };
     this.rigidBody = Matter.Bodies.rectangle(
       this.gameObject.position.x,
       this.gameObject.position.y,
-      this.size.x,
-      this.size.y,
+      sizeScale.x,
+      sizeScale.y,
       {
         isStatic: this.isStatic,
         isSensor: this.isSensor,
-      }
+      },
     );
 
     if (this.rotationLocked) {

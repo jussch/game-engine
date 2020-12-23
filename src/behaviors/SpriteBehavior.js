@@ -19,8 +19,4 @@ export default class SpriteBehavior extends Behavior {
     this.sprite.y = this.position.y;
     this.gameObject.container.addChild(this.sprite);
   }
-
-  draw() {
-
-  }
 }

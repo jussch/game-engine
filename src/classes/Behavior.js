@@ -7,12 +7,10 @@ export default class Behavior {
     const {
       gameObject,
       key,
-      values = {},
     } = props;
 
     this.gameObject = gameObject;
     this.key = key;
-    Object.assign(this, values);
   }
 
   initialize() {
@@ -36,12 +34,14 @@ export default class Behavior {
   }
 
   static instance(values = {}) {
-    return (props = {}) => (
-      new this({
+    return (props = {}) => {
+      const behavior = new this({
         ...props,
         key: this.name,
-        values,
-      })
-    );
+      });
+
+      Object.assign(behavior, values);
+      return behavior;
+    };
   }
 }

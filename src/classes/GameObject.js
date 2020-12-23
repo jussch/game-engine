@@ -74,6 +74,10 @@ export default class GameObject {
   }
 
   draw() {
+    for (let i = 0; i < this.behaviors.length; i += 1) {
+      const behavior = this.behaviors.getIndex(i);
+      behavior.draw();
+    }
     this.container.x = this.position.x;
     this.container.y = this.position.y;
   }
