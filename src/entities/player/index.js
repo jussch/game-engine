@@ -10,7 +10,7 @@ export default GameObject.schema({
   name: 'Player',
   behaviors: [
     SpriteBehavior.instance({
-
+      scale: { x: 0.67, y: 0.67 },
     }),
     RigidBodyBehavior.instance({
 

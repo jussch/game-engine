@@ -17,6 +17,16 @@ export default class SpriteBehavior extends Behavior {
     this.sprite.anchor.set(this.anchor.x, this.anchor.y);
     this.sprite.x = this.position.x;
     this.sprite.y = this.position.y;
+    const trueScale = this.getTrueScale();
+    this.sprite.scale.x = trueScale.x;
+    this.sprite.scale.y = trueScale.y;
     this.gameObject.container.addChild(this.sprite);
+  }
+
+  getTrueScale() {
+    return {
+      x: this.scale.x * this.gameObject.scale.x,
+      y: this.scale.y * this.gameObject.scale.y,
+    };
   }
 }

@@ -8,6 +8,7 @@ export default class GameObject {
   constructor(props = {}) {
     const {
       name = 'Object',
+      engine = null,
       id = GameObject.genId(`${name}_`),
       position = { x: 0, y: 0 },
       scale = { x: 1, y: 1 },
@@ -16,6 +17,7 @@ export default class GameObject {
       behaviors = [],
     } = props;
 
+    this.engine = engine;
     this.id = id;
     this.name = name;
     this.position = position;
@@ -46,6 +48,7 @@ export default class GameObject {
    * Core
    */
   initialize(engine) {
+    this.engine = engine;
     for (let i = 0; i < this.behaviors.length; i += 1) {
       const behavior = this.behaviors.getIndex(i);
       behavior.initialize(engine);

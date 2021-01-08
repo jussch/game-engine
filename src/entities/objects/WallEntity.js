@@ -5,7 +5,7 @@ import GameObject from '../../classes/GameObject';
 import RigidBodyBehavior from '../../behaviors/RigidBodyBehavior';
 import ShapeSpriteBehavior from '../../behaviors/ShapeSpriteBehavior';
 
-export default GameObject.schema({
+const WallEntity = GameObject.schema({
   name: 'Wall',
   behaviors: [
     RigidBodyBehavior.instance({
@@ -17,3 +17,14 @@ export default GameObject.schema({
     }),
   ],
 });
+
+WallEntity.createWallAt = function ({ x, y, width, height }, props) {
+  const center = { x: x + width / 2, y: y + height / 2 };
+  return WallEntity({
+    ...props,
+    position: center,
+    scale: { x: width / 100, y: height / 100 },
+  });
+};
+
+export default WallEntity;

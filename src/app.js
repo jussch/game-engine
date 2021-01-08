@@ -12,14 +12,31 @@ const player = Player({
   position: { x: 100, y: 300 },
 });
 
-const wall = WallEntity({
-  position: { x: 500, y: 50 },
-  scale: { x: 10, y: 1 },
+const wall1 = WallEntity.createWallAt({
+  x: 0,
+  y: 0,
+  width: 1600,
+  height: 30,
+});
+const wall2 = WallEntity.createWallAt({
+  x: 0,
+  y: 900-30,
+  width: 1600,
+  height: 30,
+});
+const wall3 = WallEntity.createWallAt({
+  x: 0,
+  y: 0,
+  width: 30,
+  height: 900,
+});
+const wall4 = WallEntity.createWallAt({
+  x: 1600-30,
+  y: 0,
+  width: 30,
+  height: 900,
 });
 
-engine.addGameObjects([player, wall]);
-
-console.log('player:', player);
-console.log('engine:', engine);
+engine.addGameObjects([player, wall1, wall2, wall3, wall4]);
 
 engine.run();
